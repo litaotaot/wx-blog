@@ -1,0 +1,26 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 400rpx;
+  padding-top: 80rpx;
+  box-sizing: border-box;
+  background: url('https://pic3.zhimg.com/80/v2-8734e161d85374307ae9618fb8bd168d_720w.jpg?source=1940ef5c') repeat;
+  background-size: contain;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+}
