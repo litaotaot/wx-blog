@@ -39,15 +39,9 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-<<<<<<< HEAD
   "libVersion": "2.14.1",
   "appid": "wxe728b473befae5f5",
   "projectname": "wxblog",
-=======
-  "libVersion": "2.0.4",
-  "appid": "wxe728b473befae5f5",
-  "projectname": "blog",
->>>>>>> d17c1a56cb8fa9b4244b598acd9cc74210ae7a4c
   "debugOptions": {
     "hidedInDevtools": []
   },
