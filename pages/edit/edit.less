@@ -1,0 +1,44 @@
+/* pages/edit/edit.wxss */
+.edit-container {
+  background-color: #EFF2F7;
+  // padding: 0 20rpx;
+  .commonStyle {
+    margin: 20rpx 0;
+    background-color: #ffffff;
+  }
+  .edit-opera {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #ffffff;
+    button {
+      width: 20%;
+      margin: 0 20rpx 0 0;
+      &:nth-child(2) {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+  .edit-type {
+    .picker {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .edit-title {
+    // height: 112rpx;
+    .cell-title {
+      line-height: 50rpx;
+    }
+    .weui-input {
+      margin-left: 40rpx;
+      font-size: 32rpx;
+    }
+  }
+  .edit-image {
+    text-align: center;
+    .weui-uploader__input-box {
+      width: 100%;
+    } 
+  }
+}

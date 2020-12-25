@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <block wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
+      <view class="articleList">{{item}}</view>
+    </block>
+  </view>
+</view>
+<!-- <mp-tabbar class="tabber" list="{{list}}" bindchange="tabChange"></mp-tabbar> -->

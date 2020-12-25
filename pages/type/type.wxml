@@ -1,0 +1,12 @@
+<!--pages/type/type.wxml-->
+<view class="type-container">
+  <view class="type-box" wx:for="{{typeList}}" wx:key="index">
+    <view>
+      <image src="{{item.imgUrl}}"></image>
+    </view>
+    <view>
+      <view>{{item.type}}</view>
+      <view>{{item.description}}</view>
+    </view>
+  </view>
+</view>
