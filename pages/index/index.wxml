@@ -7,10 +7,13 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <block wx:for="{{[1,2,3,4,5,6,7]}}" wx:key="index">
-      <view class="articleList">{{item}}</view>
-    </block>
+  <view class="type-box" wx:for="{{typeList}}" wx:key="index" data-id="{{item.type}}" bindtap="articleDetail">
+    <view>
+      <image src="{{item.imgUrl}}"></image>
+    </view>
+    <view>
+      <view>{{item.type}}</view>
+      <view>{{item.description}}</view>
+    </view>
   </view>
 </view>
-<!-- <mp-tabbar class="tabber" list="{{list}}" bindchange="tabChange"></mp-tabbar> -->

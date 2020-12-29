@@ -1,11 +1,52 @@
 // pages/my/my.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    motto: 'Hello World',
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    typeInfo: [
+      { type: '创作', imgUrl: '../../assets/images/type-title.jpg' },
+      { type: '评论', imgUrl: '../../assets/images/type-title.jpg' },
+      { type: '关注', imgUrl: '../../assets/images/type-title.jpg' },
+      { type: '收藏', imgUrl: '../../assets/images/type-title.jpg' },
+      { type: '记录', imgUrl: '../../assets/images/type-title.jpg' }
+    ],
+    list: [{
+      "text": "创作",
+      "iconPath": "/assets/images/type-title.jpg",
+      "selectedIconPath": "/assets/images/edit.png",
+      dot: true
+    },
+    {
+      "text": "评论",
+      "iconPath": "/assets/images/find.png",
+      "selectedIconPath": "/assets/images/type.png",
+      badge: 'New'
+    },
+    {
+      "text": "关注",
+      "iconPath": "/assets/images/find.png",
+      "selectedIconPath": "/assets/images/type.png",
+      badge: 'New'
+    },
+    {
+      "text": "收藏",
+      "iconPath": "/assets/images/find.png",
+      "selectedIconPath": "/assets/images/type.png",
+      badge: 'New'
+    },
+    {
+      "text": "记录",
+      "iconPath": "/assets/images/find.png",
+      "selectedIconPath": "/assets/images/type.png",
+      badge: 'New'
+    }]
   },
 
   /**
@@ -62,5 +103,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getUserInfo: function(e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
   }
 })

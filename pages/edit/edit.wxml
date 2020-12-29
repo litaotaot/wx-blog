@@ -22,14 +22,17 @@
     <view>
       <mp-cells>
         <mp-cell>
-            <mp-uploader bindfail="uploadError" ext-class="edti-uploader" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="1" title="输入主题图片" tips="图片上传提示"></mp-uploader>
+          <mp-uploader bindfail="uploadError" ext-class="edti-uploader" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="1" title="输入主题图片" tips="图片上传提示"></mp-uploader>
         </mp-cell>
     </mp-cells>
     </view>
   </view>
   <view class="edit-description commonStyle">
     <text>文章描述</text>
-    <editor></editor>
+    <textarea placeholder="文章精简描述" class="description"></textarea>
   </view>
-  <view></view>
+  <view class="edit-content commonStyle">
+    <text>文章内容</text>
+    <textarea placeholder="文章内容" class="content"></textarea>
+  </view>
 </view>

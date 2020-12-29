@@ -1,0 +1,24 @@
+/* pages/articleDetail/articleDetail.wxss */
+.article-container {
+  background-color: #EFF2F7;
+}
+.article-top image {
+  width: 100%;
+}
+.article-top view {
+  text-align: center;
+  padding: 30rpx 0;
+  line-height: 30rpx;
+}
+.article-description {
+  padding: 20rpx;
+  text-indent: 7%;
+  font-size: 26rpx;
+  letter-spacing: 4rpx;
+}
+.article-content {
+  padding: 20rpx;
+  text-indent: 7%;
+  font-size: 30rpx;
+  letter-spacing: 3rpx;
+}

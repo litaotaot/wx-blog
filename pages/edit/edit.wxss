@@ -10,6 +10,7 @@
   display: flex;
   justify-content: flex-end;
   background-color: #ffffff;
+  padding: 10rpx;
 }
 .edit-container .edit-opera button {
   width: 20%;
@@ -35,4 +36,19 @@
 }
 .edit-container .edit-image .weui-uploader__input-box {
   width: 100%;
+}
+.edit-container .edit-description {
+  text-align: center;
+}
+.edit-container .edit-description .description {
+  width: 100%;
+  height: 220rpx;
+  text-align: left;
+}
+.edit-container .edit-content {
+  text-align: center;
+}
+.edit-container .edit-content .content {
+  width: 100%;
+  text-align: left;
 }

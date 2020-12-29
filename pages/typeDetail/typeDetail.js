@@ -1,10 +1,11 @@
-// pages/type/type.js
+// pages/typeDetail/typeDetail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    title: '美文',
     typeList: [
       { index: 1, type: '创新', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
       { index: 2, type: '转载', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
@@ -69,10 +70,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  typeDetail() {
-    wx.navigateTo({
-      url: "/pages/typeDetail/typeDetail"
-    })
   }
 })
