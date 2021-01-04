@@ -1,0 +1,15 @@
+<!--pages/typeDetail/typeDetail.wxml-->
+<view class="typeDetail-container">
+  <view class="type-title">
+    {{title}}
+  </view>
+  <view class="type-box" wx:for="{{typeList}}" wx:key="index" data-id="{{item.type}}" bindtap="articleDetail">
+    <view>
+      <image src="{{item.imgUrl}}"></image>
+    </view>
+    <view>
+      <view>{{item.type}}</view>
+      <view>{{item.description}}</view>
+    </view>
+  </view>
+</view>
