@@ -31,6 +31,35 @@
         <text>阅读量 1</text>
       </view>
     </view>
-    <view></view>
+    <view class="article-message">
+      <view>写留言</view>
+      <view>
+        <view class="message-info">
+          <view class="info-top">
+            <view>
+              <image src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2448596489,1893080943&fm=26&gp=0.jpg"></image>
+              <text>用户1</text>
+            </view>
+            <view>
+              <mp-icon icon="tag" color="black" size="{{16}}"></mp-icon>
+              <text>2</text>
+            </view>
+          </view>
+          <view class="info-botton">
+            <text>时光太残忍。带走太多。留下太少。</text>
+            <view class="comment">
+              <text>评论</text>
+            </view>
+            <view>
+              <view class="user"><text>用户2</text> 回 <text>用户1</text></view>
+              <text>人们总是吧年少时的勇气叫作叛逆</text>
+              <view class="comment">
+                <text>评论</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

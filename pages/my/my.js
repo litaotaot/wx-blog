@@ -10,6 +10,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    current: -1,
     typeInfo: [
       { type: '创作', imgUrl: '../../assets/images/type-title.jpg' },
       { type: '评论', imgUrl: '../../assets/images/type-title.jpg' },
@@ -33,7 +34,7 @@ Page({
       "text": "关注",
       "iconPath": "/assets/images/find.png",
       "selectedIconPath": "/assets/images/type.png",
-      badge: 'New'
+      dot: true
     },
     {
       "text": "收藏",
@@ -45,15 +46,14 @@ Page({
       "text": "记录",
       "iconPath": "/assets/images/find.png",
       "selectedIconPath": "/assets/images/type.png",
-      badge: 'New'
-    }]
+      dot: true
+    }],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -67,14 +67,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(this.data.current)
+    this.setData({
+      current: -1
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**
@@ -111,5 +113,20 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  goType(e) {
+    console.log(e)
+    switch (e.detail.index) {
+      case 0:
+        wx.navigateTo({
+          url: '../myCreation/myCreation',
+        })
+        break;
+      default:
+        wx.navigateTo({
+          url: '../attention/attention',
+        })
+        break;
+    }
   }
 })
