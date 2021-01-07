@@ -11,6 +11,13 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     current: -1,
+    userShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
+    msg: {
+      info: '',
+      type: '',
+      show: false
+    },
     typeInfo: [
       { type: '创作', imgUrl: '../../assets/images/type-title.jpg' },
       { type: '评论', imgUrl: '../../assets/images/type-title.jpg' },
@@ -112,6 +119,40 @@ Page({
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
+    })
+  },
+  isUserInfo() {
+    console.log(123)
+    this.setData({
+      userShow: true
+    })
+  },
+  tapDialogButton(e) {
+    let msg = {
+      info: '',
+      type: '',
+      show: false
+    }
+    var that = this
+    wx.getUserInfo({
+      success: function(res){
+        msg.info = '获取用户信息成功'
+        msg.type = 'success'
+        msg.show = true
+      },
+      fail: function() {
+        msg.info = '获取用户信息失败'
+        msg.type = 'error'
+        msg.show = true
+      },
+      complete: function() {
+        that.setData({
+          msg
+        })
+      }
+    })
+    this.setData({
+      userShow: false,
     })
   },
   goType(e) {

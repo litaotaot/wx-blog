@@ -1,7 +1,7 @@
 <!--pages/my/my.wxml-->
 <view class="my-container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindtap="isUserInfo"> 点击登录 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -28,4 +28,8 @@
   <view class="my-background">
     <image src="../../assets/images/bac1.jpg"></image>
   </view>
+  <mp-dialog title="授权" show="{{userShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
+    <view>我们需要您的基本信息(头像昵称)请您允许授权登录</view>
+  </mp-dialog>
+  <mp-toptips msg="{{msg.info}}" type="{{msg.type}}" show="{{msg.show}}"></mp-toptips>
 </view>

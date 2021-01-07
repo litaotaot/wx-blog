@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '哈哈'
+    title: '哈哈',
+    dialogShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
   },
 
   /**
@@ -64,5 +66,16 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  showDualog() {
+    this.setData({
+      dialogShow: true
+    })
+  },
+  tapDialogButton(e) {
+    console.log(e)
+    this.setData({
+      dialogShow: false,
+    })
+  },
 })
