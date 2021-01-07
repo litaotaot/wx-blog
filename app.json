@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/my/my",
+    "pages/myCreation/myCreation",
     "pages/attention/attention",
     "pages/articleDetail/articleDetail",
     "pages/type/type",
@@ -8,8 +9,7 @@
     "pages/edit/edit",
     "pages/logs/logs",
     "pages/typeDetail/typeDetail",
-    "pages/othersDetail/othersDetail",
-    "pages/myCreation/myCreation"
+    "pages/othersDetail/othersDetail"
   ],
   "tabBar": {
     "color": "#000000",
