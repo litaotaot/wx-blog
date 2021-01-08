@@ -1,1 +1,43 @@
 /* pages/myCreation/myCreation.wxss */
+.creation-container {
+  background-color: #EFF2F7;
+  min-height: 100vh;
+}
+.creation-container view {
+  height: 170rpx;
+  background-image: url(http://pic1.win4000.com/tj/2019-08-16/5d5656814f2bd.jpg);
+  margin-bottom: 6rpx;
+  text-align: center;
+  line-height: 170rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+.creation-container view:nth-child(1) {
+  background-position: center 0%;
+  background-size: cover;
+}
+.creation-container view:nth-child(2) {
+  background-position: center 14%;
+  background-size: cover;
+}
+.creation-container view:nth-child(3) {
+  background-position: center 28%;
+  background-size: cover;
+}
+.creation-container view:nth-child(4) {
+  background-position: center 42%;
+  background-size: cover;
+}
+.creation-container view:nth-child(5) {
+  background-position: center 56%;
+  background-size: cover;
+}
+.creation-container view:nth-child(6) {
+  background-position: center 70%;
+  background-size: cover;
+}
+.creation-container view:nth-child(7) {
+  background-position: center 84%;
+  background-size: cover;
+  margin-bottom: 0rpx;
+}

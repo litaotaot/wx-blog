@@ -1,2 +1,10 @@
 <!--pages/myCreation/myCreation.wxml-->
-<text>pages/myCreation/myCreation.wxml</text>
+<view class="creation-container">
+  <view>创新</view>
+  <view>转载</view>
+  <view>美文</view>
+  <view>诗词</view>
+  <view>新闻</view>
+  <view>广告</view>
+  <view>草稿</view>
+</view>
