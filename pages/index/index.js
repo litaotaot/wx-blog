@@ -1,12 +1,14 @@
 //index.js
 //获取应用实例
 const app = getApp()
+import baseUrl from '../../api'
 
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    msgShow: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     typeList: [
       { index: 1, type: '创新', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
@@ -24,6 +26,25 @@ Page({
     })
   },
   onLoad: function () {
+    var that = this
+    wx.request({
+      url: baseUrl + 'articleList?list=5',
+      data: {},
+      method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+      // header: {}, // 设置请求的 header
+      success: function(res){
+        let result = []
+        if(res.statusCode === 200 ) {
+          result = res.data
+        }
+        that.setData({
+          typeList: result
+        })
+      },
+      fail: function() {
+        that.msgShow = true
+      },
+    })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -70,3 +91,29 @@ Page({
     })
   }
 })
+// "list": [
+    //   {
+    //     "pagePath": "pages/index/index",
+    //     "iconPath": "assets/images/find.png",
+    //     "selectedIconPath": "assets/images/find.png",
+    //     "text": "发现"
+    //   },
+    //   {
+    //     "pagePath": "pages/type/type",
+    //     "iconPath": "assets/images/type.png",
+    //     "selectedIconPath": "assets/images/type.png",
+    //     "text": "分类"
+    //   },
+    //   {
+    //     "pagePath": "pages/edit/edit",
+    //     "iconPath": "assets/images/edit.png",
+    //     "selectedIconPath": "assets/images/edit.png",
+    //     "text": "编辑"
+    //   },
+    //   {
+    //     "pagePath": "pages/my/my",
+    //     "iconPath": "assets/images/my.png",
+    //     "selectedIconPath": "assets/images/my.png",
+    //     "text": "我的"
+    //   }
+    // ]

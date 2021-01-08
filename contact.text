@@ -1,0 +1,29 @@
+存储文章表(要不要每个类型一张表)
+  articleId 
+  userId-作者
+  userName
+  type-类型 
+  title 
+  content 
+  desciption 
+  imgUrl-列表图片加上内容图片 
+  reading-阅读量 
+  comment-评论留言
+
+用户信息表
+  userId
+  sex
+  userName
+  favorites-收藏 数组类型将收藏文章id push入内, 用户浏览文章时判断该文章是否在数组内
+  awesome-赞 同收藏
+  attention-关注 关注者用户id array
+  fans-你的关注者 number
+  record-浏览记录
+
+总数表 
+  userTotal
+  articleTotal
+  visitsTotal
+
+评论留言表
+ articleId

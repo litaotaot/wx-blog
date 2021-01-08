@@ -62,7 +62,7 @@
       </view>
     </view>
     <mp-dialog title="留言" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
-      <textarea placeholder="输入你的留言内容" auto-focus="true" style="width: 100%;text-align: left;">
+      <textarea placeholder="输入你的留言内容" style="width: 100%;text-align: left;">
 
       </textarea>
     </mp-dialog>

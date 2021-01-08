@@ -113,44 +113,50 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+  // getUserInfo: function(e) {
+  //   console.log(e)
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  // },
   isUserInfo() {
-    console.log(123)
     this.setData({
       userShow: true
     })
   },
   tapDialogButton(e) {
-    let msg = {
-      info: '',
-      type: '',
-      show: false
+    if(e.detail.index === 1) {
+      let msg = {
+        info: '',
+        type: '',
+        show: false
+      }, info = {}
+      var that = this
+      wx.getUserInfo({
+        success: function(res){
+          console.log(res)
+          msg.info = '获取用户信息成功'
+          msg.type = 'success'
+          msg.show = true
+          info = res.userInfo
+          app.globalData.userInfo = res.userInfo
+        },
+        fail: function() {
+          msg.info = '获取用户信息失败'
+          msg.type = 'error'
+          msg.show = true
+        },
+        complete: function() {
+          that.setData({
+            msg,
+            userInfo: info,
+            hasUserInfo: true
+          })
+        }
+      })
     }
-    var that = this
-    wx.getUserInfo({
-      success: function(res){
-        msg.info = '获取用户信息成功'
-        msg.type = 'success'
-        msg.show = true
-      },
-      fail: function() {
-        msg.info = '获取用户信息失败'
-        msg.type = 'error'
-        msg.show = true
-      },
-      complete: function() {
-        that.setData({
-          msg
-        })
-      }
-    })
     this.setData({
       userShow: false,
     })

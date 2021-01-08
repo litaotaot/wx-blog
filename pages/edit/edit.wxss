@@ -24,12 +24,16 @@
   display: flex;
   justify-content: space-between;
 }
+.edit-container .edit-type .weui-select {
+  box-sizing: border-box;
+}
 .edit-container .edit-title .cell-title {
   line-height: 50rpx;
 }
 .edit-container .edit-title .weui-input {
   margin-left: 40rpx;
   font-size: 32rpx;
+  width: auto;
 }
 .edit-container .edit-image {
   text-align: center;

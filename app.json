@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/my/my",
     "pages/articleDetail/articleDetail",
     "pages/attention/attention",
     "pages/type/type",
-    "pages/index/index",
     "pages/edit/edit",
     "pages/logs/logs",
     "pages/typeDetail/typeDetail",
@@ -24,20 +24,20 @@
       },
       {
         "pagePath": "pages/type/type",
-        "iconPath": "assets/images/type.png",
-        "selectedIconPath": "assets/images/type.png",
+        "iconPath": "assets/images/find.png",
+        "selectedIconPath": "assets/images/find.png",
         "text": "分类"
       },
       {
         "pagePath": "pages/edit/edit",
-        "iconPath": "assets/images/edit.png",
-        "selectedIconPath": "assets/images/edit.png",
+        "iconPath": "assets/images/find.png",
+        "selectedIconPath": "assets/images/find.png",
         "text": "编辑"
       },
       {
         "pagePath": "pages/my/my",
-        "iconPath": "assets/images/my.png",
-        "selectedIconPath": "assets/images/my.png",
+        "iconPath": "assets/images/find.png",
+        "selectedIconPath": "assets/images/find.png",
         "text": "我的"
       }
     ]
