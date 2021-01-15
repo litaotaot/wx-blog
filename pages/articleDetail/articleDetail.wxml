@@ -2,33 +2,43 @@
 <view class="article-container">
   <view>
     <view class="article-top">
-      <view>{{title}}</view>
-      <image src="../../assets/images/bac2.jpg"></image>
+      <view>{{articleDetail.title}}</view>
+      <image src="{{articleDetail.imgUrl}}"></image>
     </view>
     <view class="article-description">
-      <text selectable="true">“十年前，我听周杰伦；六年前，我听陈奕迅；三年前，我听李宗盛；现在我听民谣。以前听歌，听旋律，后来，听歌词，现在，听故事。”</text>
+      <text selectable="true">{{articleDetail.description}}</text>
     </view>
     <view class="article-content">
-      <text selectable="true">为寂寞的夜空画上一个月亮，把我画在那月亮下面歌唱，为冷清的房子画上一扇大窗，再画上一张床，画一个姑娘陪着我，再画个花边的被窝，画上灶炉与柴火，我们一起生来一起活。画一群鸟儿围着我，再画上绿岭和青坡，画上宁静与祥和，雨点儿在稻田上飘落，画上有你能用手触到的彩虹，画中有我决定不灭的星空，画上弯曲无尽平坦的小路，尽头的人家梦已入，画上母亲安详的姿势，还有橡皮能擦去的争执，画上四季都不愁的粮食，悠闲的人从没心事。我没有擦去争吵的橡皮，只有一支画着孤独的笔，那夜空的月也不再亮，只有个忧郁的孩子在唱，为寂寞的夜空画上一个月亮。</text>
+      <text selectable="true">{{articleDetail.content}}</text>
     </view>
   </view>
   <view class="article-bottom">
     <view class="article-oprea">
       <view>
-        <mp-icon icon="share" color="black" size="{{20}}"></mp-icon>
-        <text>分享</text>
+        <!-- <button open-type="share"> -->
+          <mp-icon icon="share" color="black" size="{{20}}"></mp-icon>
+          <button open-type="share">分享</button>
+        <!-- </button> -->
       </view>
-      <view>
-        <mp-icon icon="like" color="black" size="{{20}}"></mp-icon>
+      <view wx:if="{{articleDetail.favorites}}">
+        <mp-icon icon="like" color="red" size="{{20}}" type="field" bindtap="favorites"></mp-icon>
+        <text>已收藏</text>
+      </view>
+      <view wx:else>
+        <mp-icon icon="like" color="black" size="{{20}}" bindtap="favorites"></mp-icon>
         <text>收藏</text>
       </view>
-      <view>
-        <mp-icon icon="tag" color="black" size="{{20}}"></mp-icon>
-        <text>赞 1</text>
+      <view wx:if="{{articleDetail.awesome}}">
+        <mp-icon icon="tag" color="green" size="{{20}}" type="field" bindtap="awesome"></mp-icon>
+        <text wx:if="{{articleDetail.awesome}}">已赞 {{articleDetail.articleAwesome}}</text>
+      </view>
+      <view wx:else>
+        <mp-icon icon="tag" color="black" size="{{20}}" bindtap="awesome"></mp-icon>
+        <text>赞 {{articleDetail.articleAwesome}}</text>
       </view>
       <view>
         <mp-icon icon="sticker" color="black" size="{{20}}"></mp-icon>
-        <text>阅读量 1</text>
+        <text>阅读量 {{articleDetail.reading}}</text>
       </view>
     </view>
     <view class="article-message">

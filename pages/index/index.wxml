@@ -7,7 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="type-box" wx:for="{{typeList}}" wx:key="index" data-id="{{item.type}}" bindtap="articleDetail">
+  <view class="type-box" wx:for="{{typeList}}" wx:key="index" data-id="{{item.articleId}}" bindtap="articleDetail">
     <view>
       <image src="{{item.imgUrl}}"></image>
     </view>

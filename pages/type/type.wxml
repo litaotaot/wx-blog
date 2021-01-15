@@ -1,4 +1,4 @@
 <!--pages/type/type.wxml-->
 <view class="type-container">
-<view class="type-box" wx:for="{{typeList}}" wx:key="index" bindtap="typeDetail" style="background-image:url({{item.imgUrl}})">{{item.type}}</view>
+<view class="type-box" wx:for="{{typeList}}" wx:key="index" data-typeId="{{item.type}}" bindtap="typeDetail" style="background-image:url({{item.imgUrl}})">{{item.title}}</view>
 </view>

@@ -9,6 +9,7 @@
   imgUrl-列表图片加上内容图片 
   reading-阅读量 
   comment-评论留言
+  articleAwesome-赞 
 
 用户信息表
   userId

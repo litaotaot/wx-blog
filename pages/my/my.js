@@ -1,3 +1,5 @@
+const { default: baseUrl } = require("../../api")
+
 // pages/my/my.js
 const app = getApp()
 Page({
@@ -7,7 +9,7 @@ Page({
    */
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: app.globalData.userInfo,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     current: -1,
@@ -128,33 +130,70 @@ Page({
   },
   tapDialogButton(e) {
     if(e.detail.index === 1) {
+      const { userInfo } = app.globalData
       let msg = {
         info: '',
         type: '',
         show: false
       }, info = {}
       var that = this
-      wx.getUserInfo({
-        success: function(res){
-          console.log(res)
-          msg.info = '获取用户信息成功'
-          msg.type = 'success'
-          msg.show = true
-          info = res.userInfo
-          app.globalData.userInfo = res.userInfo
+      const appid = 'wxdf1d8a16eb436cef'
+      const secret = '54cdbf2feb65fc2104681d3f9af6ee41'
+      const appInfo = { appid, secret }
+      wx.login({
+        success: (res) => {
+          appInfo.code = res.code
+          wx.request({
+            url: `https://api.weixin.qq.com/sns/jscode2session?appid=${appInfo.appid}&secret=${appInfo.secret}&js_code=${appInfo.code}&grant_type=authorization_code`,
+            method: 'GET',
+            success: (res) => {
+              if(res.statusCode == 200) {
+                app.globalData.idInfo = res.data
+                wx.request({
+                  url: baseUrl + 'my/login',
+                  data: {
+                    userId: res.data.openid,
+                    key: res.data.session_key,
+                    sex: userInfo.gender,
+                    userName: userInfo.nickName
+                  },
+                  method: 'POST',
+                  success: function(res){
+                    if(res.statusCode == 200) {
+                      msg.info = '获取用户信息成功'
+                      msg.type = 'success'
+                      msg.show = true
+                      that.setData({
+                        userInfo,
+                        hasUserInfo: true
+                      })
+                    }
+                  },
+                  fail: () => {
+                    msg.info = '获取用户信息失败'
+                    msg.type = 'error'
+                    msg.show = true
+                  },
+                  complete: () => {
+                    that.setData({
+                      msg,
+                    })
+                  }
+                })
+              }
+            },
+            fail: function() {
+              msg.info = '获取用户信息失败'
+              msg.type = 'error'
+              msg.show = true
+            },
+          })
         },
         fail: function() {
           msg.info = '获取用户信息失败'
           msg.type = 'error'
           msg.show = true
         },
-        complete: function() {
-          that.setData({
-            msg,
-            userInfo: info,
-            hasUserInfo: true
-          })
-        }
       })
     }
     this.setData({
@@ -175,5 +214,19 @@ Page({
         })
         break;
     }
-  }
+  },
+  // promisify(fn) {
+  //   return async function(args) {
+  //     return new Promise((resolve,reject) => {
+  //       fn({
+  //         success: (res) => {
+  //           resolve(res)
+  //         },
+  //         fail: (err) => {
+  //           reject(err)
+  //         },
+  //       })
+  //     })
+  //   }
+  // }
 })

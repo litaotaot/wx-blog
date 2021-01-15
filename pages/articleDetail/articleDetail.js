@@ -1,11 +1,12 @@
 // pages/articleDetail/articleDetail.js
+import baseUrl from '../../api'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: '哈哈',
+    articleDetail: {},
     dialogShow: false,
     buttons: [{text: '取消'}, {text: '确定'}],
   },
@@ -14,8 +15,26 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      title: options.id
+    console.log(options)
+    wx.request({
+      url: baseUrl + `articleList/detail`,
+      data: {
+        articleId: options.id,
+        userId: '100001',
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.statusCode === 200 ) {
+          this.setData({
+            articleDetail: res.data
+          })
+        }
+      },
+      fail: () => {
+        this.setData({
+          articleDetail: []
+        })
+      },
     })
   },
 
@@ -78,4 +97,70 @@ Page({
       dialogShow: false,
     })
   },
+  awesome() {
+    wx.request({
+      url: baseUrl + `articleList/awesome`,
+      data: {
+        userId: '100001',
+        articleId: this.data.articleDetail.articleId,
+        awesome: this.data.articleDetail.awesome ? 0 : 1,
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.statusCode === 200 ) {
+          let temp = this.data.articleDetail
+          temp.awesome = this.data.articleDetail.awesome ? 0 : 1
+          temp.articleAwesome += this.data.articleDetail.awesome ? 1 : -1
+          this.setData({
+            articleDetail: temp
+          })
+        }
+      },
+    })
+  },
+  favorites() {
+    wx.request({
+      url: baseUrl + `articleList/favorites`,
+      data: {
+        userId: '100001',
+        articleId: this.data.articleDetail.articleId,
+        favorites: this.data.articleDetail.favorites ? 0 : 1,
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.statusCode === 200 ) {
+          let temp = this.data.articleDetail
+          temp.favorites = this.data.articleDetail.favorites ? 0 : 1
+          this.setData({
+            articleDetail: temp
+          })
+        }
+      },
+    })
+  },
+  onShareAppMessage() {
+    let that =this;
+      return {
+        title: 'wxblog-' + this.data.articleDetail.title, // 转发后 所显示的title
+        path: '/pages/articleDetail/articleDetail?id=' + this.data.articleDetail.articleId, // 相对的路径
+        success: (res)=>{    // 成功后要做的事情
+          console.log(res.shareTickets[0])
+          wx.getShareInfo({
+            shareTicket: res.shareTickets[0],
+            success: (res)=> { 
+              that.setData({
+                isShow:true
+              }) 
+              console.log(that.setData.isShow)
+             },
+            fail: function (res) { console.log(res) },
+            complete: function (res) { console.log(res) }
+          })
+        },
+        fail: function (res) {
+          // 分享失败
+          console.log(res)
+        }
+      }
+    }
 })

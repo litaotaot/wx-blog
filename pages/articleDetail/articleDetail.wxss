@@ -44,6 +44,12 @@
 .article-bottom .article-oprea view text {
   margin-left: 10rpx;
 }
+.article-bottom .article-oprea view button {
+  width: 60rpx;
+  font-size: 28rpx;
+  height: auto;
+  padding: 0;
+}
 .article-bottom .article-message {
   padding: 0 30rpx 30rpx;
 }
