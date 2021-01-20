@@ -11,6 +11,7 @@
     <view class="article-content">
       <text selectable="true">{{articleDetail.content}}</text>
     </view>
+    <view class="article-user">-- <text data-id="{{articleDetail.userId}}" bindtap="othersDetail">{{articleDetail.userName}}</text></view>
   </view>
   <view class="article-bottom">
     <view class="article-oprea">
@@ -42,7 +43,7 @@
       </view>
     </view>
     <view class="article-message">
-      <view bindtap="showDualog">写留言</view>
+      <view bindtap="showDialog">写留言</view>
       <view>
         <view class="message-info">
           <view class="info-top">
@@ -73,8 +74,10 @@
     </view>
     <mp-dialog title="留言" show="{{dialogShow}}" bindbuttontap="tapDialogButton" buttons="{{buttons}}">
       <textarea placeholder="输入你的留言内容" style="width: 100%;text-align: left;">
-
       </textarea>
+    </mp-dialog>
+    <mp-dialog title="权限" show="{{authShow}}" bindbuttontap="isTrueAuth" buttons="{{buttons}}">
+      <view>您还未登录，是否前往登录页面？</view>
     </mp-dialog>
   </view>
 </view>

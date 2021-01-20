@@ -1,5 +1,5 @@
 // pages/othersDetail/othersDetail.js
-// pages/my/my.js
+const { default: baseUrl } = require("../../api")
 const app = getApp()
 Page({
 
@@ -7,10 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    othersInfo: {},
+    attentionShow: false,
+    buttons: [{text: '取消'}, {text: '确定'}],
     others: [
       {
         "text": "他的创作",
@@ -34,7 +33,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const { idInfo } = app.globalData
+    wx.request({
+      url: baseUrl + 'others/othersDetail',
+      data: {
+        userId: idInfo ? idInfo.openid : '',
+        othersId: options.id
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.statusCode === 200) {
+          this.setData({
+            othersInfo: res.data
+          })
+        }
+      },
+    })
   },
 
   /**
@@ -85,18 +99,48 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  attention(e) {
+    const { type } = e.currentTarget.dataset
+    const { idInfo } = app.globalData
+    if(!idInfo) {
+      this.setData({
+        attentionShow: true
+      })
+      return
+    }
+    wx.request({
+      url: baseUrl + 'others/isAtention',
+      data: {
+        userId: openid,
+        othersId: othersInfo.userId,
+        type
+      },
+      method: 'POST',
+      success: (res) => {
+        if(res.statusCode === 200) {
+          this.setData({
+            type: type === 0 ? 1 : 0
+          })
+        }
+      },
     })
+  },
+  isAttention(e) {
+    const { index } = e.detail
+    if(index === 0) {
+      this.setData({
+        attentionShow: false
+      })
+    } else if(index === 1) {
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    }
   },
   goType(e) {
     console.log(e)
     wx.navigateTo({
-      url: '../attention/attention',
+      url: '/pages/attention/attention',
     })
   }
 })

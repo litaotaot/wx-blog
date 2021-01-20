@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/my/my",
     "pages/articleDetail/articleDetail",
-    "pages/attention/attention",
+    "pages/myAttention/myAttention",
     "pages/type/type",
     "pages/edit/edit",
     "pages/logs/logs",

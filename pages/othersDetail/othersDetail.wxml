@@ -1,32 +1,31 @@
 <!--pages/othersDetail/othersDetail.wxml-->
 <view class="my-container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    <block>
+      <image class="userinfo-avatar" src="{{othersInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname" style="color: #ffffff">{{othersInfo.userName}}</text>
     </block>
     <view class="othersInfo">
       <view>
         <text>他的粉丝</text>
         <mp-icon icon="star" color="yellow" type="field" size="{{16}}"></mp-icon>
-        <text class="star-num">123</text>
+        <text class="star-num">{{othersInfo.fans}}</text>
       </view>
       <view>
         <mp-icon icon="me" color="skyblue" type="field" size="{{16}}"></mp-icon>
-        <text>关注</text>
+        <text wx:if="othersInfo.attention" data-type="1" bindtap="attention">关注</text>
+        <text wx:else data-type="0" bindtap="attention">已关注</text>
       </view>
     </view>
   </view>
   <view class="my-type commonStyle">
-    <!-- <view wx:for="{{typeInfo}}" wx:key="index"s>
-      <image src="{{item.imgUrl}}"></image>
-      <text>{{item.type}}</text>
-    </view> -->
     <mp-tabbar bindchange="goType" style="width:100%;" list="{{others}}"></mp-tabbar>
   </view>
   <view class="my-background">
     <image src="../../assets/images/bac1.jpg"></image>
   </view>
+  <mp-dialog title="权限" show="{{attentionShow}}" bindbuttontap="isAttention" buttons="{{buttons}}">
+    <view>您还未登录，是否前往登录页面？</view>
+  </mp-dialog>
 </view>
 

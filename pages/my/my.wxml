@@ -10,21 +10,17 @@
       <view>
         <text>我的粉丝</text>
         <mp-icon icon="star" color="yellow" type="field" size="{{16}}"></mp-icon>
-        <text class="star-num">123</text>
+        <text class="star-num">{{fans}}</text>
       </view>
       <view>
-        <mp-icon wx:if="{{userInfo.gender == 2}}" icon="me" color="skyblue" type="field" size="{{16}}"></mp-icon>
-        <mp-icon wx:elif="{{userInfo.gender == 1}}" icon="me" color="pink" type="field" size="{{16}}"></mp-icon>
+        <mp-icon wx:if="{{userInfo.gender == 2}}" icon="me" color="pink" type="field" size="{{16}}"></mp-icon>
+        <mp-icon wx:elif="{{userInfo.gender == 1}}" icon="me" color="skyblue" type="field" size="{{16}}"></mp-icon>
         <mp-icon wx:else icon="me" color="black" type="field" size="{{16}}"></mp-icon>
         <text></text>
       </view>
     </view>
   </view>
   <view class="my-type commonStyle">
-    <!-- <view wx:for="{{typeInfo}}" wx:key="index"s>
-      <image src="{{item.imgUrl}}"></image>
-      <text>{{item.type}}</text>
-    </view> -->
     <mp-tabbar bindchange="goType" style="width:100%;" list="{{list}}" current="{{current}}"></mp-tabbar>
   </view>
   <view class="my-background">

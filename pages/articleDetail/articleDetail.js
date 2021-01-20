@@ -1,5 +1,7 @@
 // pages/articleDetail/articleDetail.js
 import baseUrl from '../../api'
+
+const app = getApp()
 Page({
 
   /**
@@ -8,6 +10,7 @@ Page({
   data: {
     articleDetail: {},
     dialogShow: false,
+    authShow: false,
     buttons: [{text: '取消'}, {text: '确定'}],
   },
 
@@ -15,12 +18,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    const { idInfo } = app.globalData
     wx.request({
       url: baseUrl + `articleList/detail`,
       data: {
         articleId: options.id,
-        userId: '100001',
+        userId: idInfo ? idInfo.openid : '',
       },
       method: 'POST',
       success: (res) => {
@@ -84,24 +87,51 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    let that =this;
+    return {
+      title: 'wxblog-' + this.data.articleDetail.title, // 转发后 所显示的title
+      path: '/pages/articleDetail/articleDetail?id=' + this.data.articleDetail.articleId, // 相对的路径
+      success: (res)=>{    // 成功后要做的事情
+        console.log(res.shareTickets[0])
+        wx.getShareInfo({
+          shareTicket: res.shareTickets[0],
+          success: (res)=> { 
+            that.setData({
+              isShow:true
+            }) 
+            console.log(that.setData.isShow)
+            },
+          fail: function (res) { console.log(res) },
+          complete: function (res) { console.log(res) }
+        })
+      },
+      fail: function (res) {
+        // 分享失败
+        console.log(res)
+      }
+    }
   },
-  showDualog() {
+  showDialog() {
     this.setData({
       dialogShow: true
     })
   },
   tapDialogButton(e) {
-    console.log(e)
     this.setData({
       dialogShow: false,
     })
   },
   awesome() {
+    if(!app.globalData.idInfo) {
+      this.setData({
+        authShow: true
+      })
+      return
+    }
     wx.request({
       url: baseUrl + `articleList/awesome`,
       data: {
-        userId: '100001',
+        userId: app.globalData.idInfo.openid,
         articleId: this.data.articleDetail.articleId,
         awesome: this.data.articleDetail.awesome ? 0 : 1,
       },
@@ -119,10 +149,16 @@ Page({
     })
   },
   favorites() {
+    if(!app.globalData.idInfo) {
+      this.setData({
+        authShow: true
+      })
+      return
+    }
     wx.request({
       url: baseUrl + `articleList/favorites`,
       data: {
-        userId: '100001',
+        userId: app.globalData.idInfo.openid,
         articleId: this.data.articleDetail.articleId,
         favorites: this.data.articleDetail.favorites ? 0 : 1,
       },
@@ -138,29 +174,22 @@ Page({
       },
     })
   },
-  onShareAppMessage() {
-    let that =this;
-      return {
-        title: 'wxblog-' + this.data.articleDetail.title, // 转发后 所显示的title
-        path: '/pages/articleDetail/articleDetail?id=' + this.data.articleDetail.articleId, // 相对的路径
-        success: (res)=>{    // 成功后要做的事情
-          console.log(res.shareTickets[0])
-          wx.getShareInfo({
-            shareTicket: res.shareTickets[0],
-            success: (res)=> { 
-              that.setData({
-                isShow:true
-              }) 
-              console.log(that.setData.isShow)
-             },
-            fail: function (res) { console.log(res) },
-            complete: function (res) { console.log(res) }
-          })
-        },
-        fail: function (res) {
-          // 分享失败
-          console.log(res)
-        }
-      }
+  isTrueAuth(e) {
+    const { index } = e.detail
+    if(index === 0) {
+      this.setData({
+        authShow: false
+      })
+    } else if(index === 1) {
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
     }
+  },
+  othersDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/othersDetail/othersDetail?id=' + id,
+    })
+  }
 })

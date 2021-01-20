@@ -5,7 +5,6 @@ import baseUrl from '../../api'
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     msgShow: false,
@@ -34,7 +33,7 @@ Page({
       // header: {}, // 设置请求的 header
       success: function(res){
         let result = []
-        if(res.statusCode === 200 ) {
+        if(res.statusCode === 200) {
           result = res.data
         }
         that.setData({
@@ -74,7 +73,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -83,7 +81,6 @@ Page({
   },
   articleDetail: function(e) {
     let id = e.currentTarget.dataset.id
-    console.log(e)
     wx.navigateTo({
       url: '/pages/articleDetail/articleDetail?id=' + id,
       success() {

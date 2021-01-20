@@ -1,0 +1,7 @@
+<!--pages/myFavorites/myFavorites.wxml-->
+<view class="myFavorites-container">
+  <view wx:for="{{favorites}}" wx:key="index" data-id="{{item.articleId}}"  bindtap="goArticleDetail">
+    <text>{{item.title}}</text>
+    <text>--{{item.userName}}</text>
+  </view>
+</view>

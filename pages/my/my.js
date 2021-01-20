@@ -8,8 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    motto: 'Hello World',
-    userInfo: app.globalData.userInfo,
+    userInfo: '',
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     current: -1,
@@ -115,14 +114,6 @@ Page({
   onShareAppMessage: function () {
 
   },
-  // getUserInfo: function(e) {
-  //   console.log(e)
-  //   app.globalData.userInfo = e.detail.userInfo
-  //   this.setData({
-  //     userInfo: e.detail.userInfo,
-  //     hasUserInfo: true
-  //   })
-  // },
   isUserInfo() {
     this.setData({
       userShow: true
@@ -154,8 +145,9 @@ Page({
                   data: {
                     userId: res.data.openid,
                     key: res.data.session_key,
-                    sex: userInfo.gender,
-                    userName: userInfo.nickName
+                    sex: userInfo.gender ? userInfo.gender : 0,
+                    avatarUrl: userInfo.avatarUrl ? userInfo.avatarUrl : '',
+                    userName: userInfo.nickName ? userInfo.nickName : 'xxx'
                   },
                   method: 'POST',
                   success: function(res){
@@ -165,6 +157,7 @@ Page({
                       msg.show = true
                       that.setData({
                         userInfo,
+                        fans: res.data[0].fans,
                         hasUserInfo: true
                       })
                     }
@@ -187,6 +180,11 @@ Page({
               msg.type = 'error'
               msg.show = true
             },
+            complete: () => {
+              that.setData({
+                msg,
+              })
+            }
           })
         },
         fail: function() {
@@ -194,6 +192,11 @@ Page({
           msg.type = 'error'
           msg.show = true
         },
+        complete: () => {
+          that.setData({
+            msg,
+          })
+        }
       })
     }
     this.setData({
@@ -201,17 +204,46 @@ Page({
     })
   },
   goType(e) {
-    console.log(e)
+    let msg = {}
+    console.log(app.globalData.idInfo)
+    // if(!app.globalData.idInfo) {
+    //   msg.info = '请先登录！'
+    //   msg.type = 'error'
+    //   msg.show = true
+    //   this.setData({
+    //     msg,
+    //   })
+    //   return
+    // }
     switch (e.detail.index) {
       case 0:
         wx.navigateTo({
-          url: '../myCreation/myCreation',
+          url: '/pages/myCreation/myCreation?id=' + app.globalData.idInfo.openid,
+        })
+        break;
+      case 1:
+        wx.navigateTo({
+          url: '/pages/myCreation/myCreation?id=' + app.globalData.idInfo.openid,
+        })
+        break;
+      case 2:
+        wx.navigateTo({
+          // url: '/pages/attention/attention?id=' + app.globalData.idInfo.openid,
+          url: '/pages/myAttention/myAttention?id=od28p4xUlmaz3GGWKMzsmZsdL-ww',
+        })
+        break;
+      case 3:
+        wx.navigateTo({
+          url: '/pages/myFavorites/myFavorites?id=od28p4xUlmaz3GGWKMzsmZsdL-ww',
+          // url: '/pages/myFavorites/myFavorites?id=' + app.globalData.idInfo.openid,
+        })
+        break;
+      case 4:
+        wx.navigateTo({
+          url: '/pages/attention/attention?id=' + app.globalData.idInfo.openid,
         })
         break;
       default:
-        wx.navigateTo({
-          url: '../attention/attention',
-        })
         break;
     }
   },

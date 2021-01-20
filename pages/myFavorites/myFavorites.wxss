@@ -1,0 +1,14 @@
+/* pages/myFavorites/myFavorites.wxss */
+.myFavorites-container view {
+  height: 100rpx;
+  box-shadow: 0 4px 12px 0 rgba(207, 217, 239, 0.38);
+  margin: 2% 0;
+  padding: 2% 6%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.myFavorites-container view text:nth-child(2) {
+  font-size: 30rpx;
+}
