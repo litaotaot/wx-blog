@@ -1,10 +1,15 @@
 <!--pages/attention/attention.wxml-->
 <view class="my-attention">
-  <view wx:for="{{attentionInfo}}" wx:key="index" bindtap="otherDetail">
-    <image src="{{item.avatar}}"></image>
-    <view class="info">
-      <mp-icon icon="me" color="{{item.sex === '1' ? 'skyblue' : 'pink' }}" type="field" size="{{16}}"></mp-icon>
-      <text>{{item.name}}</text>
+  <view wx:if="{{attentionInfo.length}}" class="haveData">
+    <view wx:for="{{attentionInfo}}" wx:key="index" data-id="{{item.userId}}" bindtap="otherDetail">
+      <image src="{{item.avatarUrl}}"></image>
+      <view class="info">
+        <mp-icon icon="me" color="{{item.sex === '1' ? 'skyblue' : 'pink' }}" type="field" size="{{16}}"></mp-icon>
+        <text>{{item.userName}}</text>
+      </view>
     </view>
+  </view>
+  <view wx:else class="noData">
+    暂无关注人
   </view>
 </view>

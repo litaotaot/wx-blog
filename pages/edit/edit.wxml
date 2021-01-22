@@ -1,38 +1,38 @@
 <!--pages/edit/edit.wxml-->
 <view class="edit-container">
   <view class="edit-opera">
-    <button size="mini" type="primary">发布</button>
-    <button size="mini" type="warn">草稿</button>
+    <button size="mini" type="primary" bindtap="release">发布</button>
+    <button size="mini" type="warn" bindtap="draft">草稿</button>
   </view>
   <view class="edit-type commonStyle">
     <view class="weui-cell weui-cell_select">
       <view class="weui-cell__bd">
-          <picker bindchange="bindPickerChange" value="{{typeIndex}}" range="{{types}}">
-              <view class="weui-select">{{types[typeIndex]}}</view>
+          <picker bindchange="bindPickerChange" value="{{typeIndex}}" range-key="key" range="{{types}}">
+              <view class="weui-select">{{types[typeIndex].key}}</view>
           </picker>
       </view>
     </view>
   </view>
   <view class="edit-title commonStyle">
     <mp-cell title="标题" ext-class="cell-title">
-      <input bindinput="formInputChange" data-field="title" class="weui-input" placeholder="请输入文章标题"/>
+      <input bindinput="formInputChange" data-field="title" value="{{titleValue}}" class="weui-input" placeholder="请输入文章标题"/>
     </mp-cell>
   </view>
   <view class="edit-image commonStyle">
     <view>
       <mp-cells>
         <mp-cell>
-          <mp-uploader bindfail="uploadError" ext-class="edti-uploader" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="1" title="输入主题图片" tips="图片上传提示"></mp-uploader>
+          <mp-uploader bindfail="uploadError" ext-class="edit-uploader" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" files="{{files}}" max-count="1" title="输入主题图片" tips="图片上传提示"></mp-uploader>
         </mp-cell>
     </mp-cells>
     </view>
   </view>
   <view class="edit-description commonStyle">
     <text>文章描述</text>
-    <textarea placeholder="文章精简描述" class="description"></textarea>
+    <textarea placeholder="文章精简描述" bindinput="descriptionValue" value="{{descriptionValue}}" class="description"></textarea>
   </view>
   <view class="edit-content commonStyle">
     <text>文章内容</text>
-    <textarea placeholder="文章内容" class="content"></textarea>
+    <textarea placeholder="文章内容" bindinput="contentValue" value="{{contentValue}}" class="content"></textarea>
   </view>
 </view>

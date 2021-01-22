@@ -6,11 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    attentionInfo: [
-      { name: '用户1', sex: '1', avatar: 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1089874897,1268118658&fm=26&gp=0.jpg'  },
-      { name: '用户2', sex: '2', avatar: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'  },
-      { name: '用户3', sex: '1', avatar: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2631334549,246605465&fm=26&gp=0.jpg'  },
-    ],
+    attentionInfo: [],
     userId: '',
     index: 1
   },
@@ -25,7 +21,7 @@ Page({
         userId: options.id
       },
       method: 'POST',
-      success: function(res){
+      success: (res) => {
         if(res.statusCode === 200) {
           this.setData({
             attentionInfo: res.data
@@ -86,12 +82,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-  otherDetail: function() {
-    // wx.navigateTo({
-    //   url: '../my/my',
-    // })
+  otherDetail(e) {
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/othersDetail/othersDetail',
+      url: '/pages/othersDetail/othersDetail?id=' + id,
     })
   }
 })

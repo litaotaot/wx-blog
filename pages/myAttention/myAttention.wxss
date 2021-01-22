@@ -1,9 +1,9 @@
 /* pages/attention/attention.wxss */
 .my-attention {
-  min-height: 80vh;
+  min-height: 100vh;
   background-color: #EFF2F7;
 }
-.my-attention > view {
+.my-attention .haveData > view {
   height: 100rpx;
   border-bottom: 1px solid #999999;
   background-color: #ffffff;
@@ -11,19 +11,25 @@
   align-items: center;
   padding: 0 30rpx;
 }
-.my-attention > view image {
+.my-attention .haveData > view image {
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;
   border: 1px solid #999999;
 }
-.my-attention > view text {
+.my-attention .haveData > view text {
   font-size: 28rpx;
   color: #666666;
 }
-.my-attention > view .info {
+.my-attention .haveData > view .info {
   margin-left: 20rpx;
 }
-.my-attention > view .info text {
+.my-attention .haveData > view .info text {
   margin-left: 4rpx;
+}
+.noData {
+  height: 100%;
+  text-align: center;
+  padding-top: 46vh;
+  color: #999999;
 }

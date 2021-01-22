@@ -101,6 +101,7 @@ Page({
   },
   attention(e) {
     const { type } = e.currentTarget.dataset
+    const { userId } = this.data.othersInfo
     const { idInfo } = app.globalData
     if(!idInfo) {
       this.setData({
@@ -111,15 +112,18 @@ Page({
     wx.request({
       url: baseUrl + 'others/isAtention',
       data: {
-        userId: openid,
-        othersId: othersInfo.userId,
+        userId: idInfo.openid,
+        othersId: userId,
         type
       },
       method: 'POST',
       success: (res) => {
+        console.log(res)
         if(res.statusCode === 200) {
+          let othersInfo = this.data.othersInfo
+          othersInfo.attention = !Number(type)
           this.setData({
-            type: type === 0 ? 1 : 0
+            othersInfo
           })
         }
       },

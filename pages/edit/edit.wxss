@@ -38,9 +38,6 @@
 .edit-container .edit-image {
   text-align: center;
 }
-.edit-container .edit-image .weui-uploader__input-box {
-  width: 100%;
-}
 .edit-container .edit-description {
   text-align: center;
 }

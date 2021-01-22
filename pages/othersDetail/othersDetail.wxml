@@ -13,8 +13,8 @@
       </view>
       <view>
         <mp-icon icon="me" color="skyblue" type="field" size="{{16}}"></mp-icon>
-        <text wx:if="othersInfo.attention" data-type="1" bindtap="attention">关注</text>
-        <text wx:else data-type="0" bindtap="attention">已关注</text>
+        <text wx:if="{{othersInfo.attention}}" data-type="1" bindtap="attention">已关注</text>
+        <text wx:else data-type="0" bindtap="attention">关注</text>
       </view>
     </view>
   </view>
