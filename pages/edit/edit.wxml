@@ -35,4 +35,5 @@
     <text>文章内容</text>
     <textarea placeholder="文章内容" bindinput="contentValue" value="{{contentValue}}" class="content"></textarea>
   </view>
+  <mp-toptips msg="{{msg.info}}" type="{{msg.type}}" show="{{msg.show}}"></mp-toptips>
 </view>
