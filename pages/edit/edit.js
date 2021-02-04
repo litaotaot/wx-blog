@@ -18,6 +18,7 @@ Page({
     titleValue: '',
     descriptionValue: '',
     contentValue: '',
+    imgUrl: '',
     files: [
   //     {
   //     url: 'https://img.ivsky.com/img/tupian/pre/202006/30/jita-022.jpg',
@@ -104,6 +105,7 @@ Page({
   },
   release() {
     console.log(this.data.titleValue)
+    console.log(this.data.imgUrl)
     console.log(this.data.descriptionValue)
     console.log(this.data.contentValue)
     console.log(this.data.types[this.data.typeIndex].type)
@@ -157,7 +159,10 @@ Page({
           console.log(res)
           let filePath = JSON.parse(res.data).filePath
           console.log(`${baseUrl + filePath}`)
-          resolve({urls:[`${baseUrl + filePath}`]})
+          resolve({urls:[`http://116.62.41.47:5050/${filePath}`]})
+          this.setData({
+            imgUrl: `http://116.62.41.47:5050/${filePath}`
+          })
         },
         fail: (err) => {
           console.log(err)
