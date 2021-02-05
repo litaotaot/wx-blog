@@ -21,27 +21,27 @@ Page({
     },
     list: [{
       "text": "创作",
-      "iconPath": "/assets/images/type-title.jpg",
-      "selectedIconPath": "/assets/images/edit.png",
-      dot: true
+      "iconPath": "/assets/images/create.png",
+      "selectedIconPath": "/assets/images/select.png",
+      // dot: true
     },
     {
       "text": "评论",
-      "iconPath": "/assets/images/find.png",
-      "selectedIconPath": "/assets/images/type.png",
-      badge: 'New'
+      "iconPath": "/assets/images/message.png",
+      "selectedIconPath": "/assets/images/select.png",
+      // badge: 'New'
     },
     {
       "text": "关注",
-      "iconPath": "/assets/images/find.png",
-      "selectedIconPath": "/assets/images/type.png",
-      dot: true
+      "iconPath": "/assets/images/attention.png",
+      "selectedIconPath": "/assets/images/select.png",
+      // dot: true
     },
     {
       "text": "收藏",
-      "iconPath": "/assets/images/find.png",
-      "selectedIconPath": "/assets/images/type.png",
-      badge: 'New'
+      "iconPath": "/assets/images/favorites.png",
+      "selectedIconPath": "/assets/images/select.png",
+      // badge: 'New'
     },
     // {
     //   "text": "记录",
@@ -200,15 +200,15 @@ Page({
   goType(e) {
     let msg = {}
     console.log(app.globalData.idInfo)
-    // if(!app.globalData.idInfo) {
-    //   msg.info = '请先登录！'
-    //   msg.type = 'error'
-    //   msg.show = true
-    //   this.setData({
-    //     msg,
-    //   })
-    //   return
-    // }
+    if(!app.globalData.idInfo) {
+      msg.info = '请先登录！'
+      msg.type = 'error'
+      msg.show = true
+      this.setData({
+        msg,
+      })
+      return
+    }
     switch (e.detail.index) {
       case 0:
         wx.navigateTo({

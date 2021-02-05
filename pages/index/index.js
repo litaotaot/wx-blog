@@ -9,14 +9,7 @@ Page({
     hasUserInfo: false,
     msgShow: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    typeList: [
-      { index: 1, type: '创新', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-      { index: 2, type: '转载', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-      { index: 3, type: '美文', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-      { index: 4, type: '诗词', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-      { index: 5, type: '新闻', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-      { index: 6, type: '广告', imgUrl: '../../assets/images/type-title.jpg', description: '谁在最需要的时候轻轻拍着我肩膀,谁在最快乐的时候愿意和我分享,日子那么长 我在你身旁,见证你成长让我感到充满力量.' },
-    ]
+    typeList: []
   },
   //事件处理函数
   bindViewTap: function() {
